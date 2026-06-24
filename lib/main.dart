@@ -23,11 +23,14 @@ class MainApp extends StatelessWidget {
           create: (context) => Homebloc(),
         ),
       ],
-      child: MaterialApp.router(
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        themeMode: ThemeMode.light,
-        routerConfig: MyAppRouter().router,
+      child: BlocBuilder<ThemeBloc,ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: state.themeData,
+            routerConfig: MyAppRouter().router,
+          );
+        },
       ),
     );
   }

@@ -5,10 +5,10 @@ sealed class ThemeEvent extends Equatable {
 }
 
 class ThemeChanged extends ThemeEvent{
-  final AppTheme theme;
+  final AppThemeMode theme;
   ThemeChanged({required this.theme});
 
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];}
+  List<Object?> get props => [theme];}
