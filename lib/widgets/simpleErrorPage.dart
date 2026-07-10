@@ -13,7 +13,7 @@ class SimpleErrorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(body:  Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
@@ -71,12 +71,12 @@ class SimpleErrorPage extends StatelessWidget {
               ),
               child: const Text(
                 "Retry",
-                style: TextStyle(fontSize: 15,color: Colors.white),
+                style: TextStyle(fontSize: 15,color: Colors.black),
               ),
             )
           ],
         ),
       ),
-    );
+    ),);
   }
 }
