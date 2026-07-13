@@ -25,7 +25,7 @@ class NoInternet extends StatelessWidget {
             20.ph,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 7),
-              child: CustomButton(
+              child: CustomButton(loading: false,
                   onPressed: () {
                   },
                   title: "Retry"),

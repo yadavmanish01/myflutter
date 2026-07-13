@@ -1,0 +1,1 @@
+enum PostApiStatus{INITIAL, LOADING, COMPLETED, ERROR}

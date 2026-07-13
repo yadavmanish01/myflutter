@@ -7,6 +7,8 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final Color? buttonColor;
   final double borderRadius;
+  final bool loading;
+
 
   const CustomButton({
     super.key,
@@ -15,6 +17,7 @@ class CustomButton extends StatelessWidget {
     this.height,
     this.buttonColor,
     this.borderRadius = 20,
+   required this.loading
   });
 
   @override
@@ -29,14 +32,23 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       ),
       onPressed: onPressed,
-      child: Text(
+      child: loading
+          ? const SizedBox(
+        width: 22,
+        height: 22,
+        child: CircularProgressIndicator(
+          strokeWidth: 2.5,
+          color: Colors.white,
+        ),
+      )
+          : Text(
         title,
         style: const TextStyle(
-          color: Colors.white, // onPrimary
+          color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.w700,
         ),
-      ),
+      )
     );
   }
 }

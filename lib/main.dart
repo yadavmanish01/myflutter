@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myflutter/modules/auth/login/login_repository.dart';
+import 'package:myflutter/modules/auth/login/loginbloc/login_bloc.dart';
 import 'package:myflutter/modules/home/homebloc/homebloc.dart';
 import 'package:myflutter/routes/app_route_config.dart';
 import 'package:myflutter/theme/bloctheme/bloc_theme_bloc.dart';
@@ -25,6 +27,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ThemeBloc(),
         ),
+        BlocProvider(create: (context)=>LoginBloc(LoginRepository())),
         BlocProvider(
           create: (context) => Homebloc(),
         ),
