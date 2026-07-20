@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:myflutter/modules/auth/login/loginView.dart';
 import 'package:myflutter/modules/auth/signup/signup.dart';
 import 'package:myflutter/modules/home/home.dart';
+import 'package:myflutter/modules/home/newsbloc/view/news_view.dart';
 import 'package:myflutter/modules/splash/splashView.dart';
 import '../widgets/simpleErrorPage.dart';
 import 'app_route_constant.dart';
@@ -39,6 +40,13 @@ class MyAppRouter {
         path: '/signup',
         pageBuilder: (context, state) {
           return MaterialPage(child: SignupPage());
+        },
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.NewsScreenRouteName,
+        path: '/newsScreen',
+        pageBuilder: (context, state) {
+          return MaterialPage(child: NewsScreen());
         },
       ),
     ],

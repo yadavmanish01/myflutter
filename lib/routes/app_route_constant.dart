@@ -3,4 +3,5 @@ class MyAppRouteConstants{
   static const String splashRouteName = 'splash';
   static const String homeRouteName = 'home';
   static const String signupRouteName = 'signup';
+  static const String NewsScreenRouteName = 'newsScreen';
 }

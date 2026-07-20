@@ -24,9 +24,12 @@ dependencies:
   fluttertoast:
   rss_dart: ^1.0.14
   dio: ^5.10.0
-  build_runner:
   json_annotation: ^4.12.0
   freezed_annotation: ^3.1.0
+  xml:
+  url_launcher: ^6.3.2
+  webfeed_plus: ^1.1.2
+  intl:
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +37,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   json_serializable: ^6.14.0
   freezed: ^3.2.5
+  build_runner:
 
 flutter:
   uses-material-design: true

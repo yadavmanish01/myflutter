@@ -24,6 +24,8 @@ class NetworkApiService implements BaseApiServices {
         ResponseType responseType = ResponseType.json,
       }) async {
     try {
+      print("➡️ GET URL: $url");
+
       final response = await _dio.get(
         url,
         options: Options(
@@ -31,9 +33,15 @@ class NetworkApiService implements BaseApiServices {
           responseType: responseType,
         ),
       );
+      print("✅ Request Finished");
+      print("Status: ${response.statusCode}");
+      print("Data Type: ${response.data.runtimeType}");
 
       return returnResponse(response);
     } on DioException catch (e) {
+      print("❌ Dio Error: ${e.type}");
+      print("❌ Message: ${e.message}");
+      print("❌ Response: ${e.response?.data}");
       throw _handleDioError(e);
     }
   }

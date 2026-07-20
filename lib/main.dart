@@ -5,8 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:myflutter/modules/auth/login/login_repository.dart';
 import 'package:myflutter/modules/auth/login/loginbloc/login_bloc.dart';
 import 'package:myflutter/modules/home/homebloc/homebloc.dart';
+import 'package:myflutter/modules/home/newsbloc/news_repository.dart';
+import 'package:myflutter/modules/home/newsbloc/newsbloc.dart';
 import 'package:myflutter/routes/app_route_config.dart';
 import 'package:myflutter/theme/bloctheme/bloc_theme_bloc.dart';
+
+import 'modules/home/newsbloc/newsevent.dart';
 
 
 void main()async{
@@ -30,6 +34,10 @@ class MainApp extends StatelessWidget {
         BlocProvider(create: (context)=>LoginBloc(LoginRepository())),
         BlocProvider(
           create: (context) => Homebloc(),
+        ),
+        BlocProvider(
+          create: (context) => NewsBloc(NewsRepository())
+            ..add(FetchNewsEvent()),
         ),
       ],
       child: BlocBuilder<ThemeBloc,ThemeState>(
