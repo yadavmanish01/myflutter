@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myflutter/modules/auth/login/loginView.dart';
+import 'package:myflutter/modules/auth/reset_password/reset_password.dart';
 import 'package:myflutter/modules/auth/signup/signup.dart';
 import 'package:myflutter/modules/home/home.dart';
 import 'package:myflutter/modules/home/newsbloc/view/news_view.dart';
@@ -40,6 +41,13 @@ class MyAppRouter {
         path: '/signup',
         pageBuilder: (context, state) {
           return MaterialPage(child: SignupPage());
+        },
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.resetPasswordName,
+        path: '/resetPassword',
+        pageBuilder: (context, state) {
+          return MaterialPage(child: ForgetPasswordView());
         },
       ),
       GoRoute(

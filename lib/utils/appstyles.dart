@@ -15,8 +15,8 @@ class AppStyle {
   );
 
   static const TextStyle title = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
   );
 
   static const TextStyle subtitle = TextStyle(
@@ -30,7 +30,11 @@ class AppStyle {
   );
 
   static const TextStyle caption = TextStyle(
-    fontSize: 13,
+    fontSize: 12,
+  );
+  static const TextStyle captionbold = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold
   );
 
   static const TextStyle button = TextStyle(
