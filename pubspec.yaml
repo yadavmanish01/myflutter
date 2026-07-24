@@ -31,6 +31,7 @@ dependencies:
   webfeed_plus: ^1.1.2
   intl:
   flutter_launcher_icons: ^0.14.4
+  google_sign_in: ^7.2.0
 
 dev_dependencies:
   flutter_test:
