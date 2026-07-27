@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myflutter/modules/auth/login/google_Signin_bloc/google_signin_bloc.dart';
+import 'package:myflutter/modules/auth/login/google_Signin_bloc/google_signin_repository.dart';
 import 'package:myflutter/modules/auth/login/login_repository.dart';
 import 'package:myflutter/modules/auth/login/loginbloc/login_bloc.dart';
 import 'package:myflutter/modules/home/homebloc/homebloc.dart';
@@ -38,6 +40,9 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => NewsBloc(NewsRepository())
             ..add(FetchNewsEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>GoogleSigninBloc(GoogleSigninRepository())
         ),
       ],
       child: BlocBuilder<ThemeBloc,ThemeState>(
