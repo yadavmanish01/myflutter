@@ -6,12 +6,14 @@ import 'package:myflutter/modules/auth/login/google_Signin_bloc/google_signin_bl
 import 'package:myflutter/modules/auth/login/google_Signin_bloc/google_signin_repository.dart';
 import 'package:myflutter/modules/auth/login/login_repository.dart';
 import 'package:myflutter/modules/auth/login/loginbloc/login_bloc.dart';
+import 'package:myflutter/modules/auth/reset_password/reset_passwordbloc/password_bloc.dart';
 import 'package:myflutter/modules/home/homebloc/homebloc.dart';
 import 'package:myflutter/modules/home/newsbloc/news_repository.dart';
 import 'package:myflutter/modules/home/newsbloc/newsbloc.dart';
 import 'package:myflutter/routes/app_route_config.dart';
 import 'package:myflutter/theme/bloctheme/bloc_theme_bloc.dart';
 
+import 'modules/auth/reset_password/resetPasswordRepository.dart';
 import 'modules/home/newsbloc/newsevent.dart';
 
 
@@ -43,6 +45,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>GoogleSigninBloc(GoogleSigninRepository())
+        ),
+        BlocProvider(
+            create: (context) =>ResetPasswordBloc(Resetpasswordrepository())
         ),
       ],
       child: BlocBuilder<ThemeBloc,ThemeState>(
