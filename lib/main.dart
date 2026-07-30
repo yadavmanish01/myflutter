@@ -10,6 +10,8 @@ import 'package:myflutter/modules/auth/reset_password/reset_passwordbloc/passwor
 import 'package:myflutter/modules/home/homebloc/homebloc.dart';
 import 'package:myflutter/modules/home/newsbloc/news_repository.dart';
 import 'package:myflutter/modules/home/newsbloc/newsbloc.dart';
+import 'package:myflutter/modules/home/quiz/bloc/quiz_bloc.dart';
+import 'package:myflutter/modules/home/quiz/bloc/quiz_repository.dart';
 import 'package:myflutter/routes/app_route_config.dart';
 import 'package:myflutter/theme/bloctheme/bloc_theme_bloc.dart';
 
@@ -48,6 +50,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) =>ResetPasswordBloc(Resetpasswordrepository())
+        ),
+        BlocProvider(
+            create: (context) =>QuizBloc(QuizRepository())
         ),
       ],
       child: BlocBuilder<ThemeBloc,ThemeState>(

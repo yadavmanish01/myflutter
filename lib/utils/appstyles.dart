@@ -29,6 +29,7 @@ class AppStyle {
     height: 1.6,
   );
 
+  static const TextStyle subheading = TextStyle(fontSize: 22,fontWeight: FontWeight.bold);
   static const TextStyle caption = TextStyle(
     fontSize: 12,
   );
@@ -41,4 +42,5 @@ class AppStyle {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+  static const TextStyle bigbody = TextStyle(fontSize: 18,fontWeight: FontWeight.bold);
 }
