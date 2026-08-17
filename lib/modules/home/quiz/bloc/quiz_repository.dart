@@ -33,4 +33,30 @@ class QuizRepository {
       );
     }).toList();
   }
+
+  Future<void> saveQuizResult({
+    required String userId,
+    required String quizId,
+    required String quizTitle,
+    required int totalQuestions,
+    required int correct,
+    required int wrong,
+    required int skipped,
+    required double percentage,
+    required int timeTaken,
+  }) async {
+    await _firestore.collection('quizResults').add({
+      'userId': userId,
+      'quizId': quizId,
+      'quizTitle': quizTitle,
+      'totalQuestions': totalQuestions,
+      'correct': correct,
+      'wrong': wrong,
+      'skipped': skipped,
+      'score': correct,
+      'percentage': percentage,
+      'timeTaken': timeTaken,
+      'submittedAt': FieldValue.serverTimestamp(),
+    });
+  }
 }

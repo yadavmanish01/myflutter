@@ -7,6 +7,29 @@ abstract class QuizEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+/// Start Timer
+class StartTimerEvent extends QuizEvent {
+  final int duration;
+
+  const StartTimerEvent(this.duration);
+
+  @override
+  List<Object?> get props => [duration];
+}
+
+class LoadQuizCategoriesEvent extends QuizEvent {
+  const LoadQuizCategoriesEvent();
+}
+
+/// Timer Tick
+class TimerTickEvent extends QuizEvent {
+  final int remainingSeconds;
+
+  const TimerTickEvent(this.remainingSeconds);
+
+  @override
+  List<Object?> get props => [remainingSeconds];
+}
 /// Load Questions
 class LoadQuizEvent extends QuizEvent {
 
@@ -35,4 +58,24 @@ class NextQuestionEvent extends QuizEvent {}
 class PreviousQuestionEvent extends QuizEvent {}
 
 /// Submit Quiz
-class SubmitQuizEvent extends QuizEvent {}
+class SubmitQuizEvent extends QuizEvent {
+  final String userId;
+  final String quizId;
+  final String quizTitle;
+  final int timeTaken;
+
+  const SubmitQuizEvent({
+    required this.userId,
+    required this.quizId,
+    required this.quizTitle,
+    required this.timeTaken,
+  });
+
+  @override
+  List<Object?> get props => [
+    userId,
+    quizId,
+    quizTitle,
+    timeTaken,
+  ];
+}

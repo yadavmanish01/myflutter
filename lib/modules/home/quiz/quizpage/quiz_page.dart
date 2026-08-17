@@ -5,6 +5,7 @@ import 'package:myflutter/modules/home/quiz/bloc/quiz_state.dart';
 import '../../../../extens/constants.dart';
 import '../../../../utils/appstyles.dart';
 import '../bloc/quiz_event.dart';
+import '../results/resultsView.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -14,7 +15,13 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  String formatTime(int seconds) {
+    final minutes = seconds ~/ 60;
+    final remainingSeconds = seconds % 60;
 
+    return '${minutes.toString().padLeft(2, '0')}:'
+        '${remainingSeconds.toString().padLeft(2, '0')}';
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -26,7 +33,24 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<QuizBloc, QuizState>(
+      child: BlocConsumer<QuizBloc, QuizState>(
+        listener: (context, state) {
+          if (state.isSubmitted) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ResultPage(
+                  score: state.score,
+                  totalQuestions: state.questions.length,
+                  correct: state.correct,
+                  wrong: state.wrong,
+                  skipped: state.skipped,
+                  percentage: state.percentage,
+                ),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           if (state.isLoading) {
             return const Scaffold(
@@ -66,8 +90,8 @@ class _QuizPageState extends State<QuizPage> {
                         "Question ${state.currentQuestionIndex + 1} / ${state.questions.length}",
                         style: AppStyle.bigbody,
                       ),
-                      const Text(
-                        "00:15",
+                      Text(
+                        formatTime(state.remainingSeconds),
                         style: TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
@@ -155,26 +179,86 @@ class _QuizPageState extends State<QuizPage> {
                       },
                     ),
                   ),
-
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.read<QuizBloc>().add(
-                          NextQuestionEvent(),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: const Color(0xff0175C2),
-                        foregroundColor: Colors.white,
-                      ),
-                      child: const Text(
-                        "Next Question",
-                        style: TextStyle(fontSize: 16),
+                  Visibility(
+                    visible: state.currentQuestionIndex > 0,
+                    replacement: const SizedBox.shrink(),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<QuizBloc>().add(
+                          PreviousQuestionEvent(),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: const Color(0xff0175C2),
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text(
+                          "Previous Question",
+                          style: TextStyle(fontSize: 16),
+                        ),
                       ),
                     ),
-                  )
+                  ),
+                  10.ph,
+                  Visibility(
+                    visible: state.currentQuestionIndex<state.questions.length-1,
+                    replacement: const SizedBox.shrink(),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<QuizBloc>().add(
+                            NextQuestionEvent(),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: const Color(0xff0175C2),
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text(
+                          "Next Question",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ),
+                  10.ph,
+
+                  Visibility(
+                    visible: state.currentQuestionIndex ==
+                        state.questions.length - 1,
+                    replacement: const SizedBox.shrink(),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<QuizBloc>().add(
+                            const SubmitQuizEvent(
+                              userId: 'test_user_123',
+                              quizId: 'flutter_basics',
+                              quizTitle: 'Flutter Basics',
+                              timeTaken: 0,
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          backgroundColor: const Color(0xff0175C2),
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text(
+                          "Submit",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
