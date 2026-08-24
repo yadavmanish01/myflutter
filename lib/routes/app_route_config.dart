@@ -63,7 +63,13 @@ class MyAppRouter {
         name: MyAppRouteConstants.quizPageRouteName,
         path: '/quizPage',
         pageBuilder: (context, state) {
-          return MaterialPage(child: QuizPage());
+          final categoryId = state.extra as String;
+
+          return MaterialPage(
+            child: QuizPage(
+              categoryId: categoryId,
+            ),
+          );
         },
       ),
       GoRoute(

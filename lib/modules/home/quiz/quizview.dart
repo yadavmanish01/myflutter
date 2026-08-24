@@ -163,6 +163,7 @@ class _QuizHomePageState extends State<QuizHomePage> {
                                 context.pushNamed(
                                   MyAppRouteConstants
                                       .quizPageRouteName,
+                                  extra: 'flutter_basics',
                                 );
                               },
                               child: const Text("Start Quiz"),

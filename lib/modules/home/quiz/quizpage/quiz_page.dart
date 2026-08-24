@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myflutter/modules/home/quiz/bloc/quiz_bloc.dart';
@@ -8,7 +9,8 @@ import '../bloc/quiz_event.dart';
 import '../results/resultsView.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({super.key});
+  final String categoryId;
+  const QuizPage({super.key, required this.categoryId,});
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -27,7 +29,7 @@ class _QuizPageState extends State<QuizPage> {
     // TODO: implement initState
     super.initState();
     context.read<QuizBloc>().add(
-      const LoadQuizEvent("flutter_basics"),
+      LoadQuizEvent(widget.categoryId),
     );
   }
   @override
@@ -40,6 +42,7 @@ class _QuizPageState extends State<QuizPage> {
               context,
               MaterialPageRoute(
                 builder: (_) => ResultPage(
+                  categoryId: widget.categoryId,
                   score: state.score,
                   totalQuestions: state.questions.length,
                   correct: state.correct,
@@ -73,7 +76,15 @@ class _QuizPageState extends State<QuizPage> {
           state.selectedAnswers[state.currentQuestionIndex];
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Flutter Basics"),
+              title: Text(
+                widget.categoryId
+                    .replaceAll('_', ' ')
+                    .split(' ')
+                    .map(
+                      (word) => word[0].toUpperCase() + word.substring(1),
+                )
+                    .join(' '),
+              ),
               centerTitle: true,
             ),
             body: Padding(
@@ -236,11 +247,23 @@ class _QuizPageState extends State<QuizPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
+                          final user = FirebaseAuth.instance.currentUser;
+
+                          if (user == null) {
+                            return;
+                          }
+
                           context.read<QuizBloc>().add(
-                            const SubmitQuizEvent(
-                              userId: 'test_user_123',
-                              quizId: 'flutter_basics',
-                              quizTitle: 'Flutter Basics',
+                            SubmitQuizEvent(
+                              userId: user.uid,
+                              quizId: widget.categoryId,
+                              quizTitle: widget.categoryId
+                                  .replaceAll('_', ' ')
+                                  .split(' ')
+                                  .map(
+                                    (word) => word[0].toUpperCase() + word.substring(1),
+                              )
+                                  .join(' '),
                               timeTaken: 0,
                             ),
                           );

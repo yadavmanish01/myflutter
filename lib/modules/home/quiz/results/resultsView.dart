@@ -4,6 +4,7 @@ import '../../../../extens/constants.dart';
 import '../../../../utils/appstyles.dart';
 
 class ResultPage extends StatelessWidget {
+  final String categoryId;
   final int score;
   final int totalQuestions;
   final int correct;
@@ -13,6 +14,7 @@ class ResultPage extends StatelessWidget {
 
   const ResultPage({
     super.key,
+    required this.categoryId,
     required this.score,
     required this.totalQuestions,
     required this.correct,
@@ -27,7 +29,15 @@ class ResultPage extends StatelessWidget {
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Quiz Result'),
+          title: Text(
+            categoryId
+                .replaceAll('_', ' ')
+                .split(' ')
+                .map(
+                  (word) => word[0].toUpperCase() + word.substring(1),
+            )
+                .join(' '),
+          ),
           centerTitle: true,
           automaticallyImplyLeading: false,
         ),

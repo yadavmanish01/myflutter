@@ -51,25 +51,60 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     }
   }
 
+  // Future<void> _loadQuiz(
+  //     LoadQuizEvent event,
+  //     Emitter<QuizState> emit,
+  // ) async {
+  //   print("LoadQuizEvent received");
+  //   print("Category: ${event.categoryId}");
+  //   emit(state.copyWith(isLoading: true));
+  //
+  //   final questions = await repository.getQuestions(event.categoryId);
+  //   print("Questions fetched: ${questions.length}");
+  //   emit(
+  //     state.copyWith(
+  //       isLoading: false,
+  //       questions: questions,
+  //     ),
+  //   );
+  //   add(const StartTimerEvent(300));
+  // }
+
   Future<void> _loadQuiz(
       LoadQuizEvent event,
       Emitter<QuizState> emit,
-  ) async {
-    print("LoadQuizEvent received");
-    print("Category: ${event.categoryId}");
+      ) async {
+    print("========== QUIZ DEBUG ==========");
+    print("Category ID received: ${event.categoryId}");
+
     emit(state.copyWith(isLoading: true));
 
     final questions = await repository.getQuestions(event.categoryId);
+
+    print("Category ID used for Firestore: ${event.categoryId}");
     print("Questions fetched: ${questions.length}");
+
+    if (questions.isNotEmpty) {
+      print("First question: ${questions.first.question}");
+    }
+
     emit(
       state.copyWith(
         isLoading: false,
         questions: questions,
+        isSubmitted: false,
+        currentQuestionIndex: 0,
+        selectedAnswers: {},
+        score: 0,
+        correct: 0,
+        wrong: 0,
+        skipped: 0,
+        percentage: 0,
       ),
     );
+
     add(const StartTimerEvent(300));
   }
-
   void _selectOption(
       OptionSelectionEvent event,
       Emitter<QuizState> emit,
@@ -138,14 +173,14 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           );
 
           // Auto submit
-          add(
-            const SubmitQuizEvent(
-              userId: 'test_user_123',
-              quizId: 'flutter_basics',
-              quizTitle: 'Flutter Basics',
-              timeTaken: 300,
-            ),
-          );
+          // add(
+          //   const SubmitQuizEvent(
+          //     userId: 'test_user_123',
+          //     quizId: 'flutter_basics',
+          //     quizTitle: 'Flutter Basics',
+          //     timeTaken: 300,
+          //   ),
+          // );
 
           return;
         }

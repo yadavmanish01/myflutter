@@ -10,7 +10,6 @@ abstract class QuizEvent extends Equatable {
 /// Start Timer
 class StartTimerEvent extends QuizEvent {
   final int duration;
-
   const StartTimerEvent(this.duration);
 
   @override
@@ -24,7 +23,6 @@ class LoadQuizCategoriesEvent extends QuizEvent {
 /// Timer Tick
 class TimerTickEvent extends QuizEvent {
   final int remainingSeconds;
-
   const TimerTickEvent(this.remainingSeconds);
 
   @override
@@ -32,9 +30,7 @@ class TimerTickEvent extends QuizEvent {
 }
 /// Load Questions
 class LoadQuizEvent extends QuizEvent {
-
   final String categoryId;
-
   const LoadQuizEvent(this.categoryId);
 
   @override
@@ -44,7 +40,6 @@ class LoadQuizEvent extends QuizEvent {
 /// Select Option
 class OptionSelectionEvent extends QuizEvent {
   final int selectedIndex;
-
   const OptionSelectionEvent(this.selectedIndex);
 
   @override
@@ -53,10 +48,8 @@ class OptionSelectionEvent extends QuizEvent {
 
 /// Next Question
 class NextQuestionEvent extends QuizEvent {}
-
 /// Previous Question
 class PreviousQuestionEvent extends QuizEvent {}
-
 /// Submit Quiz
 class SubmitQuizEvent extends QuizEvent {
   final String userId;
