@@ -38,6 +38,12 @@ class AppStyle {
     fontWeight: FontWeight.bold
   );
 
+  static const TextStyle caption13 = TextStyle(
+      fontSize: 13,
+    height: 1.4,
+  );
+
+  static const TextStyle subheading17 = TextStyle(fontWeight: FontWeight.bold,fontSize: 17);
   static const TextStyle button = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,

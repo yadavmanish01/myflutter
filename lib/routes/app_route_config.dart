@@ -5,6 +5,7 @@ import 'package:myflutter/modules/auth/reset_password/reset_password.dart';
 import 'package:myflutter/modules/auth/signup/signup.dart';
 import 'package:myflutter/modules/home/home.dart';
 import 'package:myflutter/modules/home/newsbloc/view/news_view.dart';
+import 'package:myflutter/modules/home/packages/packagesView.dart';
 import 'package:myflutter/modules/home/quiz/quizpage/quiz_page.dart';
 import 'package:myflutter/modules/home/quiz/quizview.dart';
 import 'package:myflutter/modules/splash/splashView.dart';
@@ -77,6 +78,13 @@ class MyAppRouter {
         path: '/newsScreen',
         pageBuilder: (context, state) {
           return MaterialPage(child: NewsScreen());
+        },
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.packagesRouteName,
+        path: '/packageScreen',
+        pageBuilder: (context, state) {
+          return MaterialPage(child:PackagesScreen());
         },
       ),
     ],

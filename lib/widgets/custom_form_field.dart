@@ -18,6 +18,7 @@ class CustomFormField extends StatelessWidget {
   final int? length;
   final int? minLines;
   final int? maxLines;
+  final ValueChanged<String>? onChanged;
   final double? inputSize;
   final EdgeInsetsGeometry? contentPadding;
   final bool enableBorder;
@@ -26,6 +27,7 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField({
     super.key,
     this.hint,
+    this.onChanged,
     this.labelText,
     this.suffixIcon,
     this.prefixIcon,
@@ -35,6 +37,7 @@ class CustomFormField extends StatelessWidget {
     this.obscureText = false,
     this.fillColor,
     this.inputColor,
+
     this.controller,
     this.readOnly = false,
     this.isRequired = true,

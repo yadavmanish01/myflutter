@@ -7,6 +7,7 @@ import 'package:myflutter/modules/auth/login/loginbloc/login_state.dart';
 import 'package:myflutter/modules/home/homebloc/homeEvent.dart';
 import 'package:myflutter/modules/home/homebloc/homebloc.dart';
 import 'package:myflutter/modules/home/homebloc/homestate.dart';
+import 'package:myflutter/modules/home/packages/packagesView.dart';
 import 'package:myflutter/routes/app_route_constant.dart';
 import 'package:myflutter/utils/appstyles.dart';
 import 'package:myflutter/widgets/custom_button.dart';
@@ -160,6 +161,9 @@ class HomePage extends StatelessWidget {
                 ),
 
                 FeatureCard(
+                  onTap: (){
+                    context.pushNamed(MyAppRouteConstants.packagesRouteName);
+                  },
                   icon: Icons.extension_outlined,
                   title: "Packages",
                   subtitle: "New Packages",

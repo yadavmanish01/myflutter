@@ -7,4 +7,5 @@ class MyAppRouteConstants{
   static const String resetPasswordName = 'resetPassword';
   static const String quizRouteName = 'quiz';
   static const String quizPageRouteName = 'quizPage';
+  static const String packagesRouteName = 'packagePage';
 }
