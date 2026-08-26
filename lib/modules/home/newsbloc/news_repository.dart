@@ -44,13 +44,10 @@ class NewsRepository {
         feed["name"]!,
       ),
     );
-
     final results = await Future.wait(futures);
-
     final List<NewsModel> news =
     results.expand((e) => e).toList();
 
-    /// Remove duplicate articles
     final Map<String, NewsModel> unique = {};
 
     for (final article in news) {
@@ -76,7 +73,6 @@ class NewsRepository {
       ) async {
     try {
       logger.d("Loading : $source");
-
       final response = await _api.GetApi(
         url,
         responseType: ResponseType.plain,

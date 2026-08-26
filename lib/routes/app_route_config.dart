@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:myflutter/modules/auth/login/loginView.dart';
 import 'package:myflutter/modules/auth/reset_password/reset_password.dart';
 import 'package:myflutter/modules/auth/signup/signup.dart';
+import 'package:myflutter/modules/home/bookmarks/bookmarkView.dart';
 import 'package:myflutter/modules/home/home.dart';
 import 'package:myflutter/modules/home/newsbloc/view/news_view.dart';
 import 'package:myflutter/modules/home/packages/packagesView.dart';
@@ -66,11 +67,7 @@ class MyAppRouter {
         pageBuilder: (context, state) {
           final categoryId = state.extra as String;
 
-          return MaterialPage(
-            child: QuizPage(
-              categoryId: categoryId,
-            ),
-          );
+          return MaterialPage(child: QuizPage(categoryId: categoryId));
         },
       ),
       GoRoute(
@@ -84,7 +81,14 @@ class MyAppRouter {
         name: MyAppRouteConstants.packagesRouteName,
         path: '/packageScreen',
         pageBuilder: (context, state) {
-          return MaterialPage(child:PackagesScreen());
+          return MaterialPage(child: PackagesScreen());
+        },
+      ),
+      GoRoute(
+        name: MyAppRouteConstants.bookmarksRouteName,
+        path: '/bookmarkScreen',
+        pageBuilder: (context, state) {
+          return MaterialPage(child: BookmarkView());
         },
       ),
     ],

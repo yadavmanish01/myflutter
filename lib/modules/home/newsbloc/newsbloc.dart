@@ -9,8 +9,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsRepository repository;
 
   NewsBloc(this.repository) : super(const NewsState()) {
-    print("✅ NewsBloc Created");
-
     on<FetchNewsEvent>(_fetchNews);
     on<RefreshNewsEvent>(_fetchNews);
   }
@@ -19,8 +17,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       NewsEvent event,
       Emitter<NewsState> emit,
       ) async {
-    print("✅ FetchNewsEvent Triggered");
-
     emit(
       state.copyWith(
         newsList: const ApiResponse.loading(),
@@ -28,10 +24,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     );
 
     try {
-      print("✅ Calling Repository");
       final List<NewsModel> news =
       await repository.fetchFlutterNews();
-      print("✅ Repository Returned ${news.length} items");
       emit(
         state.copyWith(
           newsList: ApiResponse.completed(news),

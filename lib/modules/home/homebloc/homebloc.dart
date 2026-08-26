@@ -11,7 +11,6 @@ class Homebloc extends Bloc<Homeevent,Homestate>{
   emit(state.copyWith(isSwitch: !state.isSwitch));
   }
 
-  //islogout
 
 void _islogout(LogoutEvent event,Emitter<Homestate> emit){}
 }

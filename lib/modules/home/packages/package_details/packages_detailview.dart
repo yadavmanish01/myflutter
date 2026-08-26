@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../model/packages/packagesModel.dart';
+import '../../bookmarks/bloc/bookmarks_bloc.dart';
+import '../../bookmarks/bloc/bookmarks_event.dart';
+import '../../bookmarks/bloc/bookmarks_state.dart';
 
 class PackageDetailsScreen extends StatelessWidget {
   final PackageModel package;
@@ -41,13 +45,24 @@ class PackageDetailsScreen extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              // TODO: Bookmark package
+          BlocBuilder<BookmarkBloc, BookmarkState>(
+            builder: (context, state) {
+              final isBookmarked =
+              state.bookmarkedPackages.contains(package.name);
+
+              return IconButton(
+                onPressed: () {
+                  context.read<BookmarkBloc>().add(
+                    ToggleBookmarkEvent(package.name),
+                  );
+                },
+                icon: Icon(
+                  isBookmarked
+                      ? Icons.bookmark
+                      : Icons.bookmark_border,
+                ),
+              );
             },
-            icon: const Icon(
-              Icons.bookmark_border,
-            ),
           ),
         ],
       ),

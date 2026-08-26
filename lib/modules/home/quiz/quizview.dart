@@ -1,43 +1,4 @@
 
-    // final categories = [
-    //   {
-    //     "title": "Flutter",
-    //     "icon": Icons.flutter_dash,
-    //     "questions": "120 Questions",
-    //     "color": Colors.blue
-    //   },
-    //   {
-    //     "title": "Dart",
-    //     "icon": Icons.code,
-    //     "questions": "80 Questions",
-    //     "color": Colors.orange
-    //   },
-    //   {
-    //     "title": "BLoC",
-    //     "icon": Icons.account_tree,
-    //     "questions": "50 Questions",
-    //     "color": Colors.green
-    //   },
-    //   {
-    //     "title": "Firebase",
-    //     "icon": Icons.local_fire_department,
-    //     "questions": "60 Questions",
-    //     "color": Colors.deepOrange
-    //   },
-    //   {
-    //     "title": "Widgets",
-    //     "icon": Icons.widgets,
-    //     "questions": "100 Questions",
-    //     "color": Colors.purple
-    //   },
-    //   {
-    //     "title": "Animations",
-    //     "icon": Icons.animation,
-    //     "questions": "40 Questions",
-    //     "color": Colors.teal
-    //   },
-    // ];
-
     import 'package:flutter/material.dart';
     import 'package:flutter_bloc/flutter_bloc.dart';
     import 'package:go_router/go_router.dart';
@@ -82,19 +43,14 @@ class _QuizHomePageState extends State<QuizHomePage> {
 
           case 'account_tree':
             return Icons.account_tree;
-
           case 'local_fire_department':
             return Icons.local_fire_department;
-
           case 'widgets':
             return Icons.widgets;
-
           case 'animation':
             return Icons.animation;
-
           case 'firebase':
             return Icons.local_fire_department;
-
           default:
             return Icons.quiz;
         }
@@ -151,9 +107,7 @@ class _QuizHomePageState extends State<QuizHomePage> {
                                 color: Colors.white70,
                               ),
                             ),
-
                             20.ph,
-
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
@@ -183,7 +137,6 @@ class _QuizHomePageState extends State<QuizHomePage> {
                           Icon(Icons.quiz),
                         ],
                       ),
-
                       15.ph,
                       if (state.categories.isEmpty)
                         const Padding(
@@ -197,9 +150,7 @@ class _QuizHomePageState extends State<QuizHomePage> {
                           shrinkWrap: true,
                           physics:
                           const NeverScrollableScrollPhysics(),
-
                           itemCount: state.categories.length,
-
                           gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -207,95 +158,36 @@ class _QuizHomePageState extends State<QuizHomePage> {
                             mainAxisSpacing: 15,
                             childAspectRatio: .95,
                           ),
-
                           itemBuilder: (context, index) {
-
-                            final category =
-                            state.categories[index];
-
-                            final cardColor =
-                            hexToColor(category.color);
-
-                            final iconBackground =
-                            hexToColor(
-                              category.iconBackground,
-                            );
-
-                            final icon =
-                            getQuizIcon(category.icon);
-
-                            return InkWell(
-                              borderRadius:
-                              BorderRadius.circular(18),
-
+                            final category = state.categories[index];
+                            final cardColor = hexToColor(category.color);
+                            final iconBackground = hexToColor(category.iconBackground,);
+                            final icon = getQuizIcon(category.icon);
+                            return InkWell(borderRadius: BorderRadius.circular(18),
                               onTap: () {
-                                context.pushNamed(
-                                  MyAppRouteConstants
-                                      .quizPageRouteName,
-                                  extra: category.id,
-                                );
+                                context.pushNamed(MyAppRouteConstants.quizPageRouteName,
+                                  extra: category.id,);
                               },
-
-                              child: Card(
-                                elevation: 4,
-
-                                shape:
-                                RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(18),
-                                ),
-
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.all(16),
-
+                              child: Card(elevation: 4,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),),
+                                child: Padding(padding: const EdgeInsets.all(16),
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment
-                                        .spaceEvenly,
-
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      CircleAvatar(
-                                        radius: 28,
-                                        backgroundColor:
-                                        iconBackground,
-                                        child: Icon(
-                                          icon,
-                                          color: cardColor,
-                                          size: 30,
-                                        ),
+                                      CircleAvatar(radius: 28,
+                                        backgroundColor: iconBackground,
+                                        child: Icon(icon, color: cardColor, size: 30,),
                                       ),
-                                      Text(
-                                        category.title,
-                                        style:
-                                        AppStyle.bigbody,
-                                      ),
-                                      Text(
-                                        "${category.totalQuestions} Questions",
-                                        style:
-                                        AppStyle.caption,
-                                      ),
+                                      Text(category.title, style: AppStyle.bigbody,),
+                                      Text("${category.totalQuestions} Questions",
+                                        style: AppStyle.caption,),
                                       Container(
-                                        padding:
-                                        const EdgeInsets
-                                            .symmetric(
-                                          horizontal: 18,
-                                          vertical: 8,
-                                        ),
-                                        decoration:
-                                        BoxDecoration(
-                                          color: cardColor,
-                                          borderRadius:
-                                          BorderRadius
-                                              .circular(30),
-                                        ),
-                                        child: const Text(
-                                          "Start",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight:
-                                            FontWeight.bold,
-                                          ),
+                                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8,),
+                                        decoration: BoxDecoration(color: cardColor,
+                                          borderRadius: BorderRadius.circular(30),),
+                                        child: const Text("Start", style: TextStyle(
+                                            color: Colors.white, fontWeight: FontWeight.bold,),
                                         ),
                                       ),
                                     ],
@@ -305,48 +197,23 @@ class _QuizHomePageState extends State<QuizHomePage> {
                             );
                           },
                         ),
-
                       25.ph,
                       Card(
-                        elevation: 4,
-                        shape:
-                        RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.circular(18),
-                        ),
-                        child: Padding(
-                          padding:
-                          const EdgeInsets.all(18),
-                          child: Row(
-                            children: [
-
-                              const Icon(
-                                Icons.emoji_events,
-                                color: Colors.amber,
-                                size: 45,
-                              ),
+                        elevation: 4, shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),),
+                        child: Padding(padding: const EdgeInsets.all(18),
+                          child: Row(children: [const Icon(
+                                Icons.emoji_events, color: Colors.amber, size: 45,),
                               15.pw,
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Your Progress",
-                                      style:
-                                      AppStyle.bigbody,
-                                    ),
-
+                                    Text("Your Progress", style: AppStyle.bigbody,),
                                     8.ph,
-
-                                    const LinearProgressIndicator(
-                                      value: 0.65,
-                                      minHeight: 8,
-                                    ),
+                                    const LinearProgressIndicator(value: 0.65, minHeight: 8,),
                                     8.ph,
-                                    const Text(
-                                      "65% Completed",
-                                    ),
+                                    const Text("65% Completed",),
                                   ],
                                 ),
                               ),
@@ -354,7 +221,6 @@ class _QuizHomePageState extends State<QuizHomePage> {
                           ),
                         ),
                       ),
-
                       20.ph,
                     ],
                   ),

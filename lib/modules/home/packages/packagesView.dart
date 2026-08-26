@@ -117,10 +117,6 @@ class PackagesScreen extends StatelessWidget {
                 ),
               ),
 
-              // ==================================================
-              // CONTENT
-              // ==================================================
-
               Expanded(
                 child: _buildContent(
                   context,
@@ -217,10 +213,7 @@ class PackagesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ==================================================
-              // PACKAGE NAME + DESCRIPTION
-              // ==================================================
-
+           //packages name + description
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -233,13 +226,10 @@ class PackagesScreen extends StatelessWidget {
                     ),
                     child: Icon(
                       Icons.inventory_2_outlined,
-                      color: theme.colorScheme.primary,
-                      size: 27,
+                      color: theme.colorScheme.primary, size: 27,
                     ),
                   ),
-
                   14.pw,
-
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,9 +238,7 @@ class PackagesScreen extends StatelessWidget {
                           package.name,
                           style: AppStyle.subheading17,
                         ),
-
                         5.ph,
-
                         Text(
                           package.description,
                           maxLines: 2,
@@ -260,36 +248,26 @@ class PackagesScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   Icon(
                     Icons.chevron_right,
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ],
               ),
-
               16.ph,
-
-              // ==================================================
               // PACKAGE STATS
-              // ==================================================
-
               Row(
                 children: [
                   _InfoItem(
                     icon: Icons.star_outline,
                     value: _formatNumber(package.likes),
                   ),
-
                   18.pw,
-
                   _InfoItem(
                     icon: Icons.download_outlined,
                     value: _formatNumber(package.downloads),
                   ),
-
                   const Spacer(),
-
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
@@ -310,13 +288,8 @@ class PackagesScreen extends StatelessWidget {
                   ),
                 ],
               ),
-
               12.ph,
-
-              // ==================================================
               // CATEGORY
-              // ==================================================
-
               Row(
                 children: [
                   Icon(
@@ -324,16 +297,12 @@ class PackagesScreen extends StatelessWidget {
                     size: 16,
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
-
                   6.pw,
-
                   Text(
                     package.category,
                     style: AppStyle.caption,
                   ),
-
                   const Spacer(),
-
                   if (package.pubPoints > 0)
                     Text(
                       '${package.pubPoints} points',
@@ -364,11 +333,9 @@ class PackagesScreen extends StatelessWidget {
   }
 }
 
-
 class _InfoItem extends StatelessWidget {
   final IconData icon;
   final String value;
-
   const _InfoItem({
     required this.icon,
     required this.value,
@@ -377,23 +344,12 @@ class _InfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 17,
-          color: theme.colorScheme.onSurfaceVariant,
-        ),
-
+        Icon(icon, size: 17, color: theme.colorScheme.onSurfaceVariant,),
         5.pw,
-
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
+        Text(value,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600,),
         ),
       ],
     );

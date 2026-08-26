@@ -8,4 +8,5 @@ class MyAppRouteConstants{
   static const String quizRouteName = 'quiz';
   static const String quizPageRouteName = 'quizPage';
   static const String packagesRouteName = 'packagePage';
+  static const String bookmarksRouteName = 'bookmark';
 }

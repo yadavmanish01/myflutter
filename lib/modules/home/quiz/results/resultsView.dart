@@ -33,9 +33,7 @@ class ResultPage extends StatelessWidget {
             categoryId
                 .replaceAll('_', ' ')
                 .split(' ')
-                .map(
-                  (word) => word[0].toUpperCase() + word.substring(1),
-            )
+                .map((word) => word[0].toUpperCase() + word.substring(1))
                 .join(' '),
           ),
           centerTitle: true,
@@ -59,58 +57,36 @@ class ResultPage extends StatelessWidget {
                     color: Colors.orange,
                   ),
                 ),
-
-             20.ph,
-                const Text(
-                  'Quiz Completed!',
-                  style: AppStyle.headline
-                ),
-
-           8.ph,
-
+                20.ph,
+                const Text('Quiz Completed!', style: AppStyle.headline),
+                8.ph,
                 Text(
                   'Here is your quiz performance',
-                  style:AppStyle.subheading
+                  style: AppStyle.subheading,
                 ),
-
-               30.ph,
-
+                30.ph,
                 /// Percentage Card
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 30,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 30),
                   decoration: BoxDecoration(
                     color: const Color(0xff0175C2),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
                     children: [
-                      const Text(
-                        'Your Score',
-                        style: AppStyle.bigbody
-                      ),
-
-                    8.ph,
-
+                      const Text('Your Score', style: AppStyle.bigbody),
+                      8.ph,
                       Text(
                         '${percentage.toStringAsFixed(0)}%',
-                        style: AppStyle.headline
+                        style: AppStyle.headline,
                       ),
-
                       8.ph,
-
-                      Text(
-                        '$score / $totalQuestions',
-                        style: AppStyle.body
-                      ),
+                      Text('$score / $totalQuestions', style: AppStyle.body),
                     ],
                   ),
                 ),
-
                 25.ph,
-
                 /// Result Statistics
                 Row(
                   children: [
@@ -122,7 +98,7 @@ class ResultPage extends StatelessWidget {
                         color: Colors.green,
                       ),
                     ),
-                 12.pw,
+                    12.pw,
                     Expanded(
                       child: _ResultCard(
                         title: 'Wrong',
@@ -156,26 +132,20 @@ class ResultPage extends StatelessWidget {
                   ],
                 ),
                 35.ph,
+
                 /// Back Home
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.popUntil(
-                        context,
-                            (route) => route.isFirst,
-                      );
+                      Navigator.popUntil(context, (route) => route.isFirst);
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16,
-                      ),
-                      backgroundColor:
-                      const Color(0xff0175C2),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: const Color(0xff0175C2),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                     ),
                     child: const Text(
@@ -198,17 +168,11 @@ class ResultPage extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 16,
-                      ),
-                      foregroundColor:
-                      const Color(0xff0175C2),
-                      side: const BorderSide(
-                        color: Color(0xff0175C2),
-                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      foregroundColor: const Color(0xff0175C2),
+                      side: const BorderSide(color: Color(0xff0175C2)),
                       shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                     ),
                     child: const Text(
@@ -245,44 +209,23 @@ class _ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 10,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       decoration: BoxDecoration(
         color: color.withOpacity(0.08),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: color.withOpacity(0.2),
-        ),
+        border: Border.all(color: color.withOpacity(0.2)),
       ),
       child: Column(
         children: [
-          Icon(
-            icon,
-            color: color,
-            size: 30,
-          ),
-
-          const SizedBox(height: 8),
-
+          Icon(icon, color: color, size: 30),
+        8.ph,
           Text(
-            value,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
+            value, style: TextStyle(fontSize: 24,
+              fontWeight: FontWeight.bold, color: color,),
           ),
-
-          const SizedBox(height: 4),
-
+          4.ph,
           Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey.shade700,
-            ),
+            title, style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
           ),
         ],
       ),

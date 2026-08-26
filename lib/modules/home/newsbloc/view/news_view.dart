@@ -5,6 +5,7 @@ import 'package:myflutter/data/status.dart';
 import 'package:myflutter/utils/appstyles.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../extens/constants.dart';
+import '../../../../widgets/app_logger.dart';
 import '../newsState.dart';
 import '../newsbloc.dart';
 import '../newsevent.dart';
@@ -13,17 +14,15 @@ class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
 
   Future<void> _openUrl(String url) async {
-    debugPrint("Opening: $url");
-
+    logger.i("Opening: $url");
     final uri = Uri.parse(url);
-
     try {
       await launchUrl(
         uri,
         mode: LaunchMode.externalApplication,
       );
     } catch (e) {
-      debugPrint("Launch Error: $e");
+      logger.e("Launch Error: $e");
     }
   }
 
@@ -54,7 +53,7 @@ class NewsScreen extends StatelessWidget {
                     Text(
                       state.newsList.message ?? "Something went wrong",
                     ),
-                    const SizedBox(height: 15),
+                  15.ph,
                     ElevatedButton(
                       onPressed: () {
                         context.read<NewsBloc>().add(
@@ -87,8 +86,8 @@ class NewsScreen extends StatelessWidget {
                   itemCount: news.length,
                   itemBuilder: (context, index) {
                     final item = news[index];
-                    debugPrint("Image => ${item.imageUrl}");
-                    debugPrint("Link => ${item.link}");
+                    logger.d("Image => ${item.imageUrl}");
+                    logger.d("Link => ${item.link}");
                     return Card(
                       margin: const EdgeInsets.only(bottom: 15),
                       shape: RoundedRectangleBorder(
@@ -120,8 +119,7 @@ class NewsScreen extends StatelessWidget {
                                 ),
 
                               if (item.imageUrl.isNotEmpty)
-                                const SizedBox(height: 12),
-
+                               15.ph,
                               Text(
                                 item.title,
                                 style:AppStyle.title
